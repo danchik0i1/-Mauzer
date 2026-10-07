@@ -1,0 +1,17 @@
+.artwork{perspective:900px}
+.knife{width:132px;height:96px;position:absolute;overflow:visible;z-index:3;cursor:grab;touch-action:none;transform-style:preserve-3d;transform:translateY(var(--lift,0px)) rotateX(var(--rot-x,-8deg)) rotateY(var(--rot-y,0deg)) rotateZ(var(--rot-z,0deg));transition:filter .25s ease}
+.knife:active{cursor:grabbing}
+.knife::before{content:"";position:absolute;inset:8px -5px -4px;border-radius:18px;background:linear-gradient(135deg,#f3d7ff66,#6d35b533 58%,#21113366);box-shadow:0 14px 28px #38155238,0 0 22px #a86dff38;transform:translateZ(-10px);filter:blur(.2px)}
+.knife::after{content:"DRAG TO SPIN";position:absolute;left:50%;bottom:-22px;transform:translateX(-50%);font:700 9px/1.1 ui-monospace,monospace;letter-spacing:.11em;color:#f4ecff99;white-space:nowrap;opacity:0;transition:opacity .25s ease}
+.knife:hover::after,.knife:focus-visible::after{opacity:1}
+.knife-3d{position:relative;width:100%;height:100%;transform:translateZ(10px);transform-style:preserve-3d;animation:knifeFloat 4.8s ease-in-out infinite}
+.knife-right .knife-3d{animation-delay:-2.2s}
+.knife img{width:148px;max-width:none;display:block;image-rendering:auto;filter:saturate(1.18) contrast(1.08) drop-shadow(0 8px 7px #1a0b2f99);transform:translate(-8px,-4px) rotateY(0deg);border-radius:13px}
+.knife-right img{transform:translate(-8px,-4px) scaleX(-1)}
+.knife-left{left:5px;top:47px;--rot-z:-13deg;--rot-y:-18deg}
+.knife-right{right:4px;top:42px;--rot-z:13deg;--rot-y:18deg}
+.knife:focus-visible{outline:2px solid #d7b8ff;outline-offset:6px}
+@keyframes knifeFloat{0%,100%{transform:translateY(0) rotateX(0deg)}50%{transform:translateY(-7px) rotateX(4deg)}}
+@media (max-width:1050px){.knife{transform:translateY(var(--lift,0px)) scale(.88) rotateX(var(--rot-x,-8deg)) rotateY(var(--rot-y,0deg)) rotateZ(var(--rot-z,0deg))}.knife-left{left:-12px}.knife-right{right:-12px}}
+@media (max-width:720px){.knife{width:84px;height:62px}.knife img{width:96px;transform:translate(-6px,-3px)}.knife-right img{transform:translate(-6px,-3px) scaleX(-1)}.knife-left{left:-2px;top:20px}.knife-right{right:-2px;top:18px}.knife::after{display:none}}
+@media (prefers-reduced-motion:reduce){.knife-3d{animation:none}.knife{transition:none}}
